@@ -13,14 +13,21 @@ const App = () => {
     address: "Can Tho",
     Country: "Vietnam"
   }
+  const addNewTodo = (name) => {
+    alert(`Call me ${name}`)
+  }
+
   return (
     <div className="todo-container">
       <div className="todo-title"> Todo List</div>
-      <TodoNew />
+      <TodoNew
+        addNewTodo={addNewTodo} // Truyền hàm xuống component con, để component con gọi hàm này
+      />
       <TodoData
         name={hoidanit}
         age={age}
         data={data}
+
       />
       <div className="todo-image">
         <img src={reactLogo} className="logo" />

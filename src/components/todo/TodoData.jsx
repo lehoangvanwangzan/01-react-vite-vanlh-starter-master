@@ -5,7 +5,7 @@ const TodoData = (props) => {
     // const age = props.age;
     // const Country = props.data.Country;
     // const data = props.data;
-    console.log("Check props:", props);
+    // console.log("Check props:", props);
     return (
         <div className='todo-data'>
             <div className='todo-item'>
