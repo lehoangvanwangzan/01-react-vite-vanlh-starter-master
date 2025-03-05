@@ -1,8 +1,16 @@
-const TodoData = () => {
+const TodoData = (props) => {
+    //props là một opject{}
+    const { name, age, data } = props;
+    // const name = props.name;
+    // const age = props.age;
+    // const Country = props.data.Country;
+    // const data = props.data;
+    console.log("Check props:", props);
     return (
         <div className='todo-data'>
             <div className='todo-item'>
-                <span>Nội dung bảng ghi </span>
+                <span>{name}</span>
+                {/* <span> {props.name}</span> */}
                 <button> Delete</button>
                 <button> Edit</button>
             </div>
