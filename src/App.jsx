@@ -6,19 +6,21 @@ import TodoData from './components/todo/TodoData'
 
 const App = () => {
   const [todoList, setTodoList] = useState([
-    { id: 1, name: "Le hoang van 2205", age: 20, address: "Can Tho", Country: "Vietnam" },
-    { id: 2, name: "Le hoang van 2206", age: 20, address: "Can Tho", Country: "Vietnam" },
+    // { id: 1, name: "Le hoang van 2205", age: 33, address: "Can Tho", Country: "Vietnam" },
+    // { id: 2, name: "Le hoang van 2206", age: 44, address: "Can Tho", Country: "Vietnam" },
   ])
-  const hoidanit = "Le Hoang Van";
-  const age = 20;
-  const data = {
-    name: "Van",
-    age: 20,
-    address: "Can Tho",
-    Country: "Vietnam"
+  const addNewTodo = (name, address) => {
+    const newTodo = {
+      // id: randomIntFromInterval(1, 1000),
+      id: todoList.length + 1,
+      name: name,
+      address: address
+    }
+    setTodoList([...todoList, newTodo]) // Thêm phần tử mới vào mảng
   }
-  const addNewTodo = (name) => {
-    alert(`Call me ${name}`)
+
+  const randomIntFromInterval = (min, max) => {  // min and max included
+    return Math.floor(Math.random() * (max - min + 1) + min)
   }
 
   return (
@@ -28,9 +30,6 @@ const App = () => {
         addNewTodo={addNewTodo} // Truyền hàm xuống component con, để component con gọi hàm này
       />
       <TodoData
-        name={hoidanit}
-        age={age}
-        data={data}
         todoList={todoList}
       />
       <div className="todo-image">
