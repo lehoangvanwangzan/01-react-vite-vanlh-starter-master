@@ -1,5 +1,5 @@
 const TodoData = (props) => {
-    //props là một opject{}
+    //props là một object{}
     const { todoList } = props;
     // console.log("Check props:", props);
     return (
@@ -7,7 +7,7 @@ const TodoData = (props) => {
             {todoList.map((item, index) => {
                 console.log("Check item:", item);
                 return (
-                    <div className="todo-item" key={index.id}>
+                    <div className="todo-item" key={index}>
                         <div>{item.id}</div>
                         <div>{item.name}</div>
                         <div>{item.address}</div>

@@ -29,12 +29,24 @@ const App = () => {
       <TodoNew
         addNewTodo={addNewTodo} // Truyền hàm xuống component con, để component con gọi hàm này
       />
-      <TodoData
-        todoList={todoList}
-      />
-      <div className="todo-image">
-        <img src={reactLogo} className="logo" />
-      </div>
+      {/* {todoList.length > 0 &&
+        <TodoData
+          todoList={todoList}
+        />}
+      {todoList.length === 0 &&
+        <div className="todo-image">
+          <img src={reactLogo} className="logo" />
+        </div>
+      } */}
+      {todoList.length > 0 ?
+        <TodoData
+          todoList={todoList}
+        />
+        :
+        <div className="todo-image">
+          <img src={reactLogo} className="logo" />
+        </div>
+      }
     </div>
   )
 }
