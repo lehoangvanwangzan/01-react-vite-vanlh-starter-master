@@ -1,11 +1,14 @@
+import { useState } from 'react';
 const TodoNew = (props) => {
-    console.log("Check props:", props)
+    //useState hook
+    const [valueInput, setValueInput] = useState("van"); // valueInput là state, setValueInput là hàm để thay đổi state
     const { addNewTodo } = props;
     const HandleClicked = () => {
-        alert("Clicked");
+        alert(`Call me ${valueInput}`);
     }
     const HandleOnChange = (name) => {
-        console.log("Change", name);
+        // console.log("Change", name);
+        setValueInput(name);
     }
 
     return (
