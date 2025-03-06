@@ -1,7 +1,7 @@
 import { useState } from 'react';
 const TodoNew = (props) => {
     //useState hook
-    const [valueInput, setValueInput] = useState(); // valueInput là state, setValueInput là hàm để thay đổi state
+    const [valueInput, setValueInput] = useState(''); // valueInput là state, setValueInput là hàm để thay đổi state
     const { addNewTodo } = props;
     const HandleClicked = () => {
         addNewTodo(valueInput);
