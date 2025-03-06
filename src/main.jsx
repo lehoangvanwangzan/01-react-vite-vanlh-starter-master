@@ -6,6 +6,7 @@ import RegisterPage from './pages/register.jsx'
 import UserPage from './pages/user.jsx'
 import ProductPage from './pages/products.jsx'
 import ErrorPage from './error-page.jsx'
+import TodoAPP from './components/todo/TodoApp.jsx'
 import {
   createBrowserRouter,
   RouterProvider,
@@ -15,6 +16,20 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    children: [
+      {
+        index: true,
+        element: <TodoAPP />
+      },
+      {
+        path: "/users",
+        element: <UserPage />,
+      },
+      {
+        path: "/products",
+        element: <ProductPage />,
+      }
+    ],
     errorElement: <ErrorPage />
   },
   {
@@ -25,14 +40,7 @@ const router = createBrowserRouter([
     path: "/register",
     element: <RegisterPage />,
   },
-  {
-    path: "/users",
-    element: <UserPage />,
-  },
-  {
-    path: "/products",
-    element: <ProductPage />,
-  },
+
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
