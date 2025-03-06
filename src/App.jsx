@@ -3,6 +3,8 @@ import reactLogo from './assets/react.svg'
 import './components/todo/todo.css'
 import TodoNew from './components/todo/TodoNew'
 import TodoData from './components/todo/TodoData'
+import Header from './components/layout/header'
+import Footer from './components/layout/footer'
 
 const App = () => {
   const [todoList, setTodoList] = useState([
@@ -30,31 +32,26 @@ const App = () => {
   }
 
   return (
-    <div className="todo-container">
-      <div className="todo-title"> Todo List</div>
-      <TodoNew
-        addNewTodo={addNewTodo} // Truyền hàm xuống component con, để component con gọi hàm này
-      />
-      {/* {todoList.length > 0 &&
-        <TodoData
-          todoList={todoList}
-        />}
-      {todoList.length === 0 &&
-        <div className="todo-image">
-          <img src={reactLogo} className="logo" />
-        </div>
-      } */}
-      {todoList.length > 0 ?
-        <TodoData
-          todoList={todoList}
-          deleteTodo={deleteTodo}
+    <>
+      <Header />
+      <div className="todo-container">
+        <div className="todo-title"> Todo List</div>
+        <TodoNew
+          addNewTodo={addNewTodo} // Truyền hàm xuống component con, để component con gọi hàm này
         />
-        :
-        <div className="todo-image">
-          <img src={reactLogo} className="logo" />
-        </div>
-      }
-    </div>
+        {todoList.length > 0 ?
+          <TodoData
+            todoList={todoList}
+            deleteTodo={deleteTodo}
+          />
+          :
+          <div className="todo-image">
+            <img src={reactLogo} className="logo" />
+          </div>
+        }
+      </div>
+      <Footer />
+    </>
   )
 }
 
