@@ -9,9 +9,9 @@ const UserForm = () => {
     const [password, setPassword] = useState("");
     const [phone, setPhone] = useState("");
     // console.log(fullName, email, password, phone);
-    const HandleClickedButton = () => {
-        createUserAPI(fullName, email, password, phone);
-        // console.log({ fullName, email, password, phone });
+    const HandleClickedButton = async () => {
+        const res = await createUserAPI(fullName, email, password, phone);
+        // console.log("check:", res.data.data);
     }
     return (
         <div className="user-form" style={{ padding: "20px 0" }}>

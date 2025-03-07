@@ -9,11 +9,11 @@ const createUserAPI = (fullName, email, password, phone) => {
         phone: phone
     }
     return axios.post(URL_BACKEND, data)
-        .then((response) => {
-            console.log(response);
-        }).catch((error) => {
-            console.log(error);
-        })
+    // .then((response) => {
+    //     console.log(response);
+    // }).catch((error) => {
+    //     console.log(error);
+    // })
 }
 //update user
 const updateUserAPI = () => {
