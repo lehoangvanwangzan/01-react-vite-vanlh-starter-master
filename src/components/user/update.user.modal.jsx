@@ -8,7 +8,7 @@ const UpdateUserModal = (props) => {
     const { isModalUpdateOpen, setIsModalUpdateOpen, dataUpdate, setDataUpdate, loadUser } = props;
     // const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(true);
     useEffect(() => {
-        console.log(">>> run check props:", dataUpdate)
+        // console.log(">>> run check props:", dataUpdate)
         if (dataUpdate) {
             setId(dataUpdate._id);
             setFullName(dataUpdate.fullName);
