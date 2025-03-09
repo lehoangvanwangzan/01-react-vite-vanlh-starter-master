@@ -44,7 +44,7 @@ const UserForm = (props) => {
                 <h3>Table User</h3>
                 <Button type="primary" onClick={() => { setIsModalOpen(true) }}>Create User</Button>
             </div>
-            <Modal title="Basic Modal"
+            <Modal title="Create User"
                 open={isModalOpen}
                 onOk={() => { HandleSubmitdButton() }}
                 onCancel={() => { ResetAndCloseModal() }}
