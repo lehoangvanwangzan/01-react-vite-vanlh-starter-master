@@ -1,5 +1,6 @@
 import { Button, Drawer } from "antd"
 import { useState } from "react";
+import { handleUploadFile } from "../../services/api.service";
 const ViewUserDetail = (props) => {
     const { dataDetail, setDataDetail, isDetailOpen, setIsDetailOpen } = props;
 
@@ -20,7 +21,13 @@ const ViewUserDetail = (props) => {
             setPreview(URL.createObjectURL(file));
         }
     }
-    console.log(preview);
+    const HandleUpdateUserAvatar = async () => {
+        //step1: upload file
+        const resUpload = await handleUploadFile(selectedFile, "avatar")
+        console.log(">>> check resupload", resUpload)
+        //step2: update user
+    }
+
     return (
         <>
             <Drawer
@@ -64,15 +71,20 @@ const ViewUserDetail = (props) => {
                             <input type='file' hidden id='btnUpload' onChange={(event) => { HandleOnChangeFile(event) }} />
                         </div>
                         {preview &&
-                            <div style={{
-                                marginTop: "10px",
-                                height: "100px", width: "150px",
-                                border: "1px solid #ccc"
-                            }}>
-                                <img height={250} width={300}
-                                    src={preview}
-                                ></img>
-                            </div>
+                            <>
+                                <div style={{
+                                    marginTop: "10px",
+                                    height: "100px", width: "150px",
+                                    border: "1px solid #ccc"
+                                }}>
+                                    <img height={250} width={300}
+                                        src={preview}
+                                    ></img>
+                                </div>
+                                <Button type='primary'
+                                    onClick={() => { HandleUpdateUserAvatar() }}> Save
+                                </Button>
+                            </>
                         }
                     </>
                     :
