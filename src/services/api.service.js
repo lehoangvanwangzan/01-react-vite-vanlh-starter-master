@@ -1,3 +1,4 @@
+import { FundFilled } from "@ant-design/icons";
 import axios from "./axios.customize";
 // create user
 const createUserAPI = (fullName, email, password, phone) => {
@@ -25,7 +26,7 @@ const deleteUserAPI = (id) => {
     return axios.delete(URL_BACKEND)
 }
 const handleUploadFile = (file, folder) => {
-    const URL_BACKEND = `/api/v1/file/upload`; //backtick
+    const URL_BACKEND = "/api/v1/file/upload"; //backtick
     let config = {
         headers: {
             "upload-type": folder,
@@ -36,8 +37,18 @@ const handleUploadFile = (file, folder) => {
     bodyFormData.append("fileImg", file)
     return axios.post(URL_BACKEND, bodyFormData, config)
 }
-const fetchAllUserAPI = () => {
+const UpdateUserAvatarAPI = (avatar, _id, fullName, phone) => {
     const URL_BACKEND = "/api/v1/user";
+    const data = {
+        avatar: avatar,
+        _id: _id,
+        fullName: fullName,
+        phone: phone
+    }
+    return axios.put(URL_BACKEND, data)
+}
+const fetchAllUserAPI = (current, pageSize) => {
+    const URL_BACKEND = `/api/v1/user?current=${current}&pageSize=${pageSize}`;
     return axios.get(URL_BACKEND);
 }
-export { createUserAPI, updateUserAPI, fetchAllUserAPI, deleteUserAPI, handleUploadFile };
+export { createUserAPI, updateUserAPI, fetchAllUserAPI, deleteUserAPI, handleUploadFile, UpdateUserAvatarAPI };

@@ -1,8 +1,8 @@
-import { Button, Drawer } from "antd"
+import { Button, Drawer, message, notification } from "antd"
 import { useState } from "react";
-import { handleUploadFile } from "../../services/api.service";
+import { handleUploadFile, UpdateUserAvatarAPI } from "../../services/api.service";
 const ViewUserDetail = (props) => {
-    const { dataDetail, setDataDetail, isDetailOpen, setIsDetailOpen } = props;
+    const { dataDetail, setDataDetail, isDetailOpen, setIsDetailOpen, loadUser } = props;
 
     // console.log(props);
     const [selectedFile, setSelectedFile] = useState(null)
@@ -24,8 +24,34 @@ const ViewUserDetail = (props) => {
     const HandleUpdateUserAvatar = async () => {
         //step1: upload file
         const resUpload = await handleUploadFile(selectedFile, "avatar")
-        console.log(">>> check resupload", resUpload)
-        //step2: update user
+        // console.log(">>> check resupload", resUpload)
+        if (resUpload.data) {
+            //success
+            const newAvatar = resUpload.data.fileUploaded;
+            //step2: update user
+            const resUploadAvatar = await UpdateUserAvatarAPI(newAvatar, dataDetail._id, dataDetail.fullName, dataDetail.phone)
+            if (resUploadAvatar.data) {
+                setIsDetailOpen(false);
+                setSelectedFile(null);
+                setPreview(null);
+                await loadUser();
+                notification.success({
+                    message: "Update user avatar",
+                    description: "Cập nhật avatar thành công"
+                })
+            } else {
+                notification.error({
+                    message: "Error update avatar",
+                    description: JSON.stringify(resUploadAvatar, message)
+                })
+
+            }
+        } else {
+            notification.error({
+                message: "Error upload file",
+                description: JSON.stringify(resUpload, message)
+            })
+        }
     }
 
     return (
