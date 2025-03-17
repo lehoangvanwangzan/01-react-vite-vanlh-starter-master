@@ -1,13 +1,13 @@
 // import './header.css';
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { UserOutlined, HomeOutlined, SettingOutlined, BookOutlined } from '@ant-design/icons';
+import { UserOutlined, HomeOutlined, SettingOutlined, BookOutlined, LogoutOutlined, LoginOutlined } from '@ant-design/icons';
 import { Menu } from "antd";
 
 const Header = () => {
     const [current, setCurrent] = useState('');
     const onClick = (e) => {
-        console.log('click ', e);
+        // console.log('click ', e);
         setCurrent(e.key);
     };
     const items = [
@@ -29,48 +29,29 @@ const Header = () => {
             // disabled: true,
         },
         {
-            label: 'Navigation Three - Submenu',
-            key: 'SubMenu',
+            label: 'Cài đặt',
+            key: 'setting',
             icon: <SettingOutlined />,
             children: [
                 {
                     type: 'group',
-                    label: 'Item 1',
+                    // label: 'Item 1',
                     children: [
                         {
-                            label: 'Option 1',
-                            key: 'setting:1',
+                            label: <NavLink to="/login">Đăng nhập</NavLink>,
+                            key: 'login',
+                            icon: <LoginOutlined />,
                         },
                         {
-                            label: 'Option 2',
-                            key: 'setting:2',
+                            label: <NavLink to="/register">Đăng xuất</NavLink>,
+                            key: 'logout',
+                            icon: <LogoutOutlined />,
                         },
                     ],
-                },
-                {
-                    type: 'group',
-                    label: 'Item 2',
-                    children: [
-                        {
-                            label: 'Option 3',
-                            key: 'setting:3',
-                        },
-                        {
-                            label: 'Option 4',
-                            key: 'setting:4',
-                        },
-                    ],
-                },
+                }
             ],
         },
-        {
-            key: 'alipay',
-            label: (
-                <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
-                    Navigation Four - Link
-                </a>
-            ),
-        },
+
     ];
     return (
         <Menu

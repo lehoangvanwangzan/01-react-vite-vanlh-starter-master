@@ -47,8 +47,27 @@ const UpdateUserAvatarAPI = (avatar, _id, fullName, phone) => {
     }
     return axios.put(URL_BACKEND, data)
 }
+// register form
+const registerUserAPI = (fullName, email, password, phone) => {
+    const URL_BACKEND = "/api/v1/user/register";
+    const data = {
+        fullName: fullName,
+        email: email,
+        password: password,
+        phone: phone
+    }
+    return axios.post(URL_BACKEND, data)
+}
+const loginPageUserAPI = (email, password) => {
+    const URL_BACKEND = "/api/v1/auth/login";
+    const data = {
+        email: email,
+        password: password
+    }
+    return axios.post(URL_BACKEND, data)
+}
 const fetchAllUserAPI = (current, pageSize) => {
     const URL_BACKEND = `/api/v1/user?current=${current}&pageSize=${pageSize}`;
     return axios.get(URL_BACKEND);
 }
-export { createUserAPI, updateUserAPI, fetchAllUserAPI, deleteUserAPI, handleUploadFile, UpdateUserAvatarAPI };
+export { createUserAPI, updateUserAPI, fetchAllUserAPI, deleteUserAPI, handleUploadFile, UpdateUserAvatarAPI, registerUserAPI, loginPageUserAPI };
