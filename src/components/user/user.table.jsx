@@ -1,5 +1,4 @@
-import React from 'react';
-import { Table, notification, Popconfirm, Pagination } from 'antd';
+import { Table, notification, Popconfirm } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import UpdateUserModal from './update.user.modal';
 import { useState } from 'react';
@@ -89,7 +88,7 @@ const UserTable = (props) => {
         }
         await loadUser();
     }
-    const onChange = (pagination, filters, sorter, extra) => {
+    const onChange = (pagination) => {
         //nếu thay đổi trang:current
         if (pagination && pagination.current) {
             if (+pagination.current !== +current) {
