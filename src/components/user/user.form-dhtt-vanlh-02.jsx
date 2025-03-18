@@ -14,7 +14,7 @@ const UserForm = (props) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const HandleSubmitdButton = async () => {
         const res = await createUserAPI(fullName, email, password, phone);
-        // console.log("check res:", res)
+        // console.log("check res:", res);
         if (res.data) {
             notification.success({
                 message: "Create User Success",

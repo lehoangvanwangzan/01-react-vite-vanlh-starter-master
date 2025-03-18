@@ -13,6 +13,7 @@ const RegisterPage = () => {
             values.password,
             values.phone
         );
+        // console.log("check res", res)
         if (res.data) {
             notification.success({
                 message: "Register User Success",
