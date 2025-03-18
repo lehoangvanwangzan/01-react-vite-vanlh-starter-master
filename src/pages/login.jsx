@@ -12,11 +12,11 @@ const LoginPage = () => {
     const { setUser } = useContext(AuthContext);
     const onFinish = async (values) => {
         setLoading(true);
-        // console.log(values)
+
         //call API
         const res = await loginAPI(values.email, values.password);
         if (res.data) {
-            // console.log("check res:", res)
+
             message.success("Đăng nhập thành công");
             localStorage.setItem("access_token", res.data.access_token)
             setUser(res.data.user);
@@ -74,7 +74,9 @@ const LoginPage = () => {
                                 },
                             ]}
                         >
-                            <Input.Password />
+                            <Input.Password onKeyDown={(event) => {
+                                if (event.key === "Enter") form.submit();
+                            }} />
                         </Form.Item>
                         <Form.Item label={null}>
                             <div style={{

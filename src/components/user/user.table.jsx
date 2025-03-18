@@ -17,7 +17,6 @@ const UserTable = (props) => {
         {
             title: "STT",
             render: (_, record, index) => {
-                // console.log(">>>check index:", index, current)
                 return (
                     <>
                         {(index + 1) + (current - 1) * pageSize}
@@ -101,7 +100,6 @@ const UserTable = (props) => {
                 setPageSize(+pagination.pageSize) //convert"string" => int
             }
         }
-        // console.log(">>>check ", { pagination, filters, sorter, extra })
     }
     return (
         <>

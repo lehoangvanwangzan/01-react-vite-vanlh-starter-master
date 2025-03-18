@@ -1,14 +1,12 @@
 const TodoData = (props) => {
     //props là một object{}
     const { todoList, deleteTodo } = props;
-    // console.log("Check props:", props);
     const HandleClicked = (id) => {
         deleteTodo(id)
     }
     return (
         <div className='todo-data'>
             {todoList.map((item, index) => {
-                // console.log("Check item:", item);
                 return (
                     <div className="todo-item" key={index}>
                         <div>{item.id}</div>

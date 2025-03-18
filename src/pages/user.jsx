@@ -12,7 +12,6 @@ const UserPage = () => {
     //not empty = > check next value !== pre value
     useEffect(() => {
         loadUser();
-        // console.log(">>> run render1111")
     }, [current, pageSize]); //Biến 2 để mảng rổng thì hàm chỉ chạy 1 lần
     //[] + condition
     const loadUser = async () => {
@@ -23,7 +22,6 @@ const UserPage = () => {
             setPageSize(res.data.meta.pageSize);
             setTotal(res.data.meta.total);
         }
-        // console.log(">>> run render2222")
     }
 
     return (

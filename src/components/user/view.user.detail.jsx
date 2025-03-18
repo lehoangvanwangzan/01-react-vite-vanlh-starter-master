@@ -3,8 +3,6 @@ import { useState } from "react";
 import { handleUploadFile, UpdateUserAvatarAPI } from "../../services/api.service";
 const ViewUserDetail = (props) => {
     const { dataDetail, setDataDetail, isDetailOpen, setIsDetailOpen, loadUser } = props;
-
-    // console.log(props);
     const [selectedFile, setSelectedFile] = useState(null)
     const [preview, setPreview] = useState(null)
     const HandleOnChangeFile = (event) => {
@@ -24,7 +22,6 @@ const ViewUserDetail = (props) => {
     const HandleUpdateUserAvatar = async () => {
         //step1: upload file
         const resUpload = await handleUploadFile(selectedFile, "avatar")
-        // console.log(">>> check resupload", resUpload)
         if (resUpload.data) {
             //success
             const newAvatar = resUpload.data.fileUploaded;

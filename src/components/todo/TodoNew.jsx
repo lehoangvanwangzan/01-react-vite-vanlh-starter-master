@@ -8,7 +8,6 @@ const TodoNew = (props) => {
         setValueInput(" ");
     }
     const HandleOnChange = (name) => {
-        // console.log("Change", name, address);
         setValueInput(name);
     }
 

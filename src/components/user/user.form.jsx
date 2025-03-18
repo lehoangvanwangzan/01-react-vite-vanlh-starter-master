@@ -8,11 +8,9 @@ const UserForm = (props) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [phone, setPhone] = useState("");
-    // console.log(fullName, email, password, phone);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const HandleSubmitdButton = async () => {
         const res = await createUserAPI(fullName, email, password, phone);
-        // console.log("check res:", res)
         if (res.data) {
             notification.success({
                 message: "Create User Success",

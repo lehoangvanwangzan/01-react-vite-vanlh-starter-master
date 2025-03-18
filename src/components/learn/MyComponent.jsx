@@ -14,7 +14,7 @@ const MyComponent = () => {
         <>
             <div> {hoang.age} van ^ tech shop 1234</div>
             <div>{JSON.stringify(hoang)} van tech shop 9999</div>
-            <div>{console.log("tech shop 1111")}</div>
+
             <div className="child" style={{ borderRadius: "10xp" }}> Lê Hoàng Văn update</div>
         </>
     );
