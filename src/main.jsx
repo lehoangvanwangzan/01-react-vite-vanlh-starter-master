@@ -11,6 +11,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { AuthWrapper } from './components/context/auth.context.jsx'
+import PrivateRoute from './pages/private.route.jsx'
 
 const router = createBrowserRouter([
   {
@@ -28,7 +29,10 @@ const router = createBrowserRouter([
       },
       {
         path: "/books",
-        element: <BookPage />,
+        element: (
+          <PrivateRoute>
+            <BookPage />
+          </PrivateRoute>),
       }
     ],
 

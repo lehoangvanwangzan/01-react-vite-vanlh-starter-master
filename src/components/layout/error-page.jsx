@@ -8,7 +8,7 @@ const ErrorPage = () => {
 
     return (
         <Result
-            status="403"
+            status="404"
             title="Oops!"
             subTitle={error.statusText || error.message}
             extra={
