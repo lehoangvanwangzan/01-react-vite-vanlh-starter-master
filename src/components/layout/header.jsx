@@ -1,17 +1,37 @@
 // import './header.css';
 import { useContext, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { UserOutlined, HomeOutlined, BookOutlined, LogoutOutlined, LoginOutlined, AliwangwangOutlined } from '@ant-design/icons';
-import { Menu } from "antd";
+import { Menu, message } from "antd";
 import { AuthContext } from '../context/auth.context';
+import { logoutAPI } from '../../services/api.service';
 
 const Header = () => {
     const [current, setCurrent] = useState('');
-    const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const { user, setUser } = useContext(AuthContext);
     const onClick = (e) => {
 
         setCurrent(e.key);
     };
+    const handleLogout = async () => {
+        const res = await logoutAPI();
+        if (res.data) {
+            //clear data
+            localStorage.removeItem("access_token");
+            setUser({
+                email: "",
+                phone: "",
+                fullName: "",
+                role: "",
+                avatar: "",
+                id: ""
+            });
+            message.success("Logout thành công")
+            //redirect to home
+            navigate("/")
+        }
+    }
     const items = [
         {
             label: <NavLink to="/">Home</NavLink>,
@@ -45,7 +65,8 @@ const Header = () => {
                     // label: 'Item 1',
                     children: [
                         {
-                            label: <NavLink to="/login" onClick={() => {
+                            label: <NavLink to="/" onClick={() => {
+                                handleLogout();
                             }}>Đăng xuất</NavLink>,
                             key: 'logout',
                             icon: <LogoutOutlined />,

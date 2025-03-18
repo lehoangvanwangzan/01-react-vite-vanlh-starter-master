@@ -18,7 +18,7 @@ const App = () => {
       //Success
       setUser(res.data.user);
       setIsAppLoading(false);
-    }
+    } else setIsAppLoading(false);
   }
   return (
     <>
