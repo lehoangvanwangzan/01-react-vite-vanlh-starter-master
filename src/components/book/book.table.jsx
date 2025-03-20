@@ -2,16 +2,17 @@ import { useEffect, useState } from "react"
 import { deleteBookAPI, fetchALLBookAPI } from "../../services/api.service";
 import { Button, notification, Popconfirm, Table } from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import ViewBookDetail from "./View.book.detail";
+import UpdateBookModal from "./update.book.modal";
+import CreateBookControl from "./create.book.control";
 
-const BookTable = () => {
-    const [dataBook, setDataBook] = useState([])
-    const [current, setCurrent] = useState(1);
-    const [pageSize, setPageSize] = useState(5);
-    const [total, setTotal] = useState(0);
-
+const BookTable = (props) => {
+    const { dataBook, loadBook, current, pageSize, total
+        , setCurrent, setPageSize
+    } = props;
     const [dataDetail, setDataDetail] = useState(null);
-    const [isDetailOpen, setDataDetailOpen] = useState(false);
-
+    const [isDetailOpen, setIsDetailOpen] = useState(false);
+    const [isCreateOpen, setIsCreateOpen] = useState(false);
     const [dataUpdate, setDataUpdate] = useState(null);
     const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(false);
     const columns = [
@@ -31,8 +32,9 @@ const BookTable = () => {
             render: (_, record) => {
                 return (
                     <a href='#' onClick={() => {
+                        console.log("click detail", record)
                         setDataDetail(record)
-                        // setIsDetailOpen(true);
+                        setIsDetailOpen(true);
                     }} >{record._id} </a>
                 )
             },
@@ -86,19 +88,7 @@ const BookTable = () => {
             }
         },
     ];
-    useEffect(() => {
-        loadBook();
-    }, []); //useEffect chỉ chạy 1 lần để lấy dữ liệu
-    const loadBook = async () => {
-        const res = await fetchALLBookAPI(current, pageSize);
-        console.log("check API book", res)
-        if (res.data) {
-            setDataBook(res.data.result);
-            setCurrent(res.data.meta.current);
-            setPageSize(res.data.meta.pageSize);
-            setTotal(res.data.meta.total);
-        }
-    }
+
     const HandleDeleteBook = async (id) => {
         //xóa book
         const res = await deleteBookAPI(id);
@@ -139,7 +129,7 @@ const BookTable = () => {
                 justifyContent: "space-between"
             }}>
                 <h3>Table Book</h3>
-                <Button type="primary" onClick={() => { console.log("click me create book") }}>Create Book</Button>
+                <Button type="primary" onClick={() => { setIsCreateOpen(true) }}>Create Book</Button>
             </div >
             <Table
                 columns={columns}
@@ -161,6 +151,22 @@ const BookTable = () => {
                     }
                 }
                 onChange={onChange}
+            />
+            <UpdateBookModal
+                isModalUpdateOpen={isModalUpdateOpen}
+                setIsModalUpdateOpen={setIsModalUpdateOpen}
+            />
+            <ViewBookDetail
+                dataDetail={dataDetail}
+                setDataDetail={setDataDetail}
+                isDetailOpen={isDetailOpen}
+                setIsDetailOpen={setIsDetailOpen}
+                loadBook={loadBook}
+            />
+            <CreateBookControl
+                isCreateOpen={isCreateOpen}
+                setIsCreateOpen={setIsCreateOpen}
+                loadBook={loadBook}
             />
         </>
 
