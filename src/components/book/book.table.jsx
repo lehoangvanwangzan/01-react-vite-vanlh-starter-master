@@ -5,10 +5,9 @@ import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import ViewBookDetail from "./View.book.detail";
 import UpdateBookModal from "./update.book.modal";
 import CreateBookControl from "./create.book.control";
-
 const BookTable = (props) => {
     const { dataBook, loadBook, current, pageSize, total
-        , setCurrent, setPageSize
+        , setCurrent, setPageSize, loadingTable, setLoadingTable
     } = props;
     const [dataDetail, setDataDetail] = useState(null);
     const [isDetailOpen, setIsDetailOpen] = useState(false);
@@ -151,6 +150,7 @@ const BookTable = (props) => {
                     }
                 }
                 onChange={onChange}
+                loading={loadingTable}
             />
             <UpdateBookModal
                 isModalUpdateOpen={isModalUpdateOpen}

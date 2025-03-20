@@ -7,10 +7,12 @@ const BookPage = () => {
     const [current, setCurrent] = useState(1);
     const [pageSize, setPageSize] = useState(5);
     const [total, setTotal] = useState(0);
+    const [loadingTable, setLoadingTable] = useState(false);
     useEffect(() => {
         loadBook();
     }, [current, pageSize]); //useEffect chỉ chạy 1 lần để lấy dữ liệu
     const loadBook = async () => {
+        setLoadingTable(true)
         const res = await fetchALLBookAPI(current, pageSize);
         console.log("check API book", res)
         if (res.data) {
@@ -19,6 +21,7 @@ const BookPage = () => {
             setPageSize(res.data.meta.pageSize);
             setTotal(res.data.meta.total);
         }
+        setLoadingTable(false)
     }
     return (
         <BookTable
@@ -29,6 +32,8 @@ const BookPage = () => {
             total={total}
             setCurrent={setCurrent}
             setPageSize={setPageSize}
+            loadingTable={loadingTable}
+            setLoadingTable={setLoadingTable}
         />
     );
 };

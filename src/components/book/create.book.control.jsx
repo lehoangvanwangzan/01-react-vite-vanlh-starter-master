@@ -78,10 +78,6 @@ const CreateBookControl = (props) => {
     }
     return (
         <div className="user-form" style={{ padding: "10px 0" }}>
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <h3>Table Book</h3>
-                <Button type="primary" onClick={() => { setIsCreateOpen(true) }}>Create User</Button>
-            </div>
             <Modal title="Create Book"
                 open={isCreateOpen}
                 onOk={() => { HandleSubmitdButton() }}
