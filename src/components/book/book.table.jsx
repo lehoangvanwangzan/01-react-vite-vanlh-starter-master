@@ -3,8 +3,10 @@ import { deleteBookAPI, fetchALLBookAPI } from "../../services/api.service";
 import { Button, notification, Popconfirm, Table } from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import ViewBookDetail from "./View.book.detail";
-import UpdateBookModal from "./update.book.modal";
-import CreateBookControl from "./create.book.control";
+import CreateBookUncontrolled from "./create.book.uncontrol";
+import UpdateBookControl from "./update.book.control";
+import UpdateBookUncontrol from "./update.book.uncontrol";
+import UpdateBookUncontrolled from "./update.book.uncontrol";
 const BookTable = (props) => {
     const { dataBook, loadBook, current, pageSize, total
         , setCurrent, setPageSize, loadingTable, setLoadingTable
@@ -66,7 +68,6 @@ const BookTable = (props) => {
                     <div style={{ display: "flex", gap: "20px" }}>
                         <EditOutlined style={{ cursor: "pointer", color: "orange" }}
                             onClick={() => {
-                                console.log("click edit")
                                 setDataUpdate(record);
                                 setIsModalUpdateOpen(true);
                             }}
@@ -152,10 +153,6 @@ const BookTable = (props) => {
                 onChange={onChange}
                 loading={loadingTable}
             />
-            <UpdateBookModal
-                isModalUpdateOpen={isModalUpdateOpen}
-                setIsModalUpdateOpen={setIsModalUpdateOpen}
-            />
             <ViewBookDetail
                 dataDetail={dataDetail}
                 setDataDetail={setDataDetail}
@@ -163,11 +160,31 @@ const BookTable = (props) => {
                 setIsDetailOpen={setIsDetailOpen}
                 loadBook={loadBook}
             />
-            <CreateBookControl
+            {/* <CreateBookControl
+                isCreateOpen={isCreateOpen}
+                setIsCreateOpen={setIsCreateOpen}
+                loadBook={loadBook}
+            /> */}
+            <CreateBookUncontrolled
                 isCreateOpen={isCreateOpen}
                 setIsCreateOpen={setIsCreateOpen}
                 loadBook={loadBook}
             />
+            {/* <UpdateBookControl
+                dataUpdate={dataUpdate}
+                setDataUpdate={setDataUpdate}
+                isModalUpdateOpen={isModalUpdateOpen}
+                setIsModalUpdateOpen={setIsModalUpdateOpen}
+                loadBook={loadBook}
+            /> */}
+            <UpdateBookUncontrolled
+                dataUpdate={dataUpdate}
+                setDataUpdate={setDataUpdate}
+                isModalUpdateOpen={isModalUpdateOpen}
+                setIsModalUpdateOpen={setIsModalUpdateOpen}
+                loadBook={loadBook}
+            />
+
         </>
 
     )
