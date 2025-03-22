@@ -7,6 +7,7 @@ const UpdateBookUncontrolled = (props) => {
     const [form] = Form.useForm()
     const [selectedFile, setSelectedFile] = useState(null);
     const [preview, setPreview] = useState(null);
+    const [loadingUpdate, setLoadingUpdate] = useState(false);
     useEffect(() => {
         if (dataUpdate && dataUpdate._id) {
             form.setFieldsValue({
@@ -42,6 +43,7 @@ const UpdateBookUncontrolled = (props) => {
 
     }
     const HandleSubmitdButton = async (values) => {
+        setLoadingUpdate(true);
         //không có ảnh preview + không có file => return
         if (!selectedFile && !preview) {
             notification.error({
@@ -68,6 +70,7 @@ const UpdateBookUncontrolled = (props) => {
                 return;
             }
         }
+        setLoadingUpdate(false);
         await UpdateBook(newThumbnail, values);
     }
     const HandleOnChangeFile = (event) => {
@@ -95,6 +98,9 @@ const UpdateBookUncontrolled = (props) => {
         <Modal title="Create Book (uncontrolled component)"
             open={isModalUpdateOpen}
             onOk={() => { form.submit() }}
+            okButtonProps={{
+                loading: loadingUpdate
+            }}
             onCancel={() => { ResetAndCloseModal() }}
             maskClosable={false}
             okText={"UPDATE"}

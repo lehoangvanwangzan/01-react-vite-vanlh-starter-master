@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import BookTable from "../components/book/book.table";
 import { fetchALLBookAPI } from "../services/api.service";
 

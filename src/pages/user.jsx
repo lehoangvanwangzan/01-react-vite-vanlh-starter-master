@@ -7,6 +7,7 @@ const UserPage = () => {
     const [current, setCurrent] = useState(1);
     const [pageSize, setPageSize] = useState(10);
     const [total, setTotal] = useState(0);
+    const [loadingTable, setLoadingTable] = useState(false);
     //empty array run one
     //not empty = > check next value !== pre value
     useEffect(() => {
@@ -14,6 +15,7 @@ const UserPage = () => {
     }, [current, pageSize]); //Biến 2 để mảng rổng thì hàm chỉ chạy 1 lần
     //[] + condition
     const loadUser = async () => {
+        setLoadingTable(true)
         const res = await fetchAllUserAPI(current, pageSize);
         if (res.data) {
             setDataUsers(res.data.result);
@@ -21,6 +23,7 @@ const UserPage = () => {
             setPageSize(res.data.meta.pageSize);
             setTotal(res.data.meta.total);
         }
+        setLoadingTable(false)
     }
 
     return (
@@ -34,6 +37,8 @@ const UserPage = () => {
                 total={total}
                 setCurrent={setCurrent}
                 setPageSize={setPageSize}
+                loadingTable={loadingTable}
+                setLoadingTable={setLoadingTable}
             />
 
         </div >

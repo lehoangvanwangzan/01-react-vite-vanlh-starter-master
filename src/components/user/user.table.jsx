@@ -7,7 +7,7 @@ import { deleteUserAPI } from "../../services/api.service";
 
 const UserTable = (props) => {
     const { dataUsers, loadUser, current, pageSize, total
-        , setCurrent, setPageSize
+        , setCurrent, setPageSize, loadingTable
     } = props;
     const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(false);
     const [dataUpdate, setDataUpdate] = useState(null);
@@ -122,6 +122,7 @@ const UserTable = (props) => {
                         }
                     }}
                 onChange={onChange}
+                loading={loadingTable}
             />
             <UpdateUserModal
                 isModalUpdateOpen={isModalUpdateOpen}

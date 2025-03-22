@@ -9,7 +9,9 @@ const CreateBookUncontrolled = (props) => {
     const { isCreateOpen, setIsCreateOpen, loadBook } = props;
     const [selectedFile, setSelectedFile] = useState(null);
     const [preview, setPreview] = useState(null);
+    const [loadingCreate, setLoadingCreate] = useState(false);
     const HandleSubmitdButton = async (values) => {
+        setLoadingCreate(true)
         if (!selectedFile) {
             notification.error({
                 message: "Error create book",
@@ -45,9 +47,7 @@ const CreateBookUncontrolled = (props) => {
                 description: JSON.stringify(resUpload.message),
             });
         }
-
-
-
+        setLoadingCreate(false);
         ResetAndCloseModal();
         await loadBook();
     }
@@ -77,6 +77,9 @@ const CreateBookUncontrolled = (props) => {
         <Modal title="Create Book (uncontrolled component)"
             open={isCreateOpen}
             onOk={() => { form.submit() }}
+            okButtonProps={{
+                loading: loadingCreate
+            }}
             onCancel={() => { ResetAndCloseModal() }}
             maskClosable={false}
             okText={"CREATE"}

@@ -1,6 +1,6 @@
 // import './header.css';
-import { useContext, useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { UserOutlined, HomeOutlined, BookOutlined, LogoutOutlined, LoginOutlined, AliwangwangOutlined } from '@ant-design/icons';
 import { Menu, message } from "antd";
 import { AuthContext } from '../context/auth.context';
@@ -10,6 +10,18 @@ const Header = () => {
     const [current, setCurrent] = useState('');
     const navigate = useNavigate();
     const { user, setUser } = useContext(AuthContext);
+    const location = useLocation();
+    useEffect(() => {
+        if (location && location.pathname) {
+            const allRoutes = ["user", "books"];
+            const currentRoute = allRoutes.find(item => `/${item}` === location.pathname)
+            if (currentRoute) {
+                setCurrent(currentRoute);
+            } else {
+                setCurrent("home")
+            }
+        }
+    }, [location])
     const onClick = (e) => {
 
         setCurrent(e.key);
@@ -40,13 +52,13 @@ const Header = () => {
         },
         {
             label: <NavLink to="/user">User</NavLink>,
-            key: 'users',
+            key: 'user',
             icon: <UserOutlined />,
             // disabled: true,
         },
         {
             label: <NavLink to="/books">Book</NavLink>,
-            key: 'book',
+            key: 'books',
             icon: <BookOutlined />,
             // disabled: true,
         },
